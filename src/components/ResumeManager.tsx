@@ -1,0 +1,9 @@
+import { Copy, FilePlus2, FolderOpen, MoreHorizontal, Trash2 } from 'lucide-react'
+import { useState } from 'react'
+import { useResume } from '../resumeStore'
+
+export function ResumeManager() {
+  const { resume, documents, dispatch } = useResume()
+  const [open, setOpen] = useState(false)
+  return <div className="resume-manager"><button className="manager-trigger" onClick={() => setOpen((value) => !value)} aria-expanded={open}><FolderOpen size={15} /> Mis CV <span>{documents.length}</span></button>{open && <div className="manager-popover"><div className="manager-heading"><div><span className="eyebrow">Documentos</span><strong>Mis CV</strong></div><button className="tiny-button" aria-label="Más opciones"><MoreHorizontal size={16} /></button></div><div className="document-list">{documents.map((document) => <div className={`document-row ${document.id === resume.id ? 'active' : ''}`} key={document.id}><button className="document-select" onClick={() => { dispatch({ type: 'switch-resume', id: document.id }); setOpen(false) }}><FilePlus2 size={15} /><span><strong>{document.title}</strong><small>{new Date(document.updatedAt).toLocaleDateString('es-CO', { day: '2-digit', month: 'short' })}</small></span></button><input aria-label={`Renombrar ${document.title}`} value={document.title} onChange={(event) => dispatch({ type: 'rename-resume', id: document.id, title: event.target.value })} /><button className="tiny-button danger" onClick={() => dispatch({ type: 'delete-resume', id: document.id })} aria-label={`Eliminar ${document.title}`}><Trash2 size={14} /></button></div>)}</div><div className="manager-actions"><button className="secondary-button" onClick={() => dispatch({ type: 'create-resume' })}><FilePlus2 size={15} /> Crear CV</button><button className="secondary-button" onClick={() => dispatch({ type: 'duplicate-resume' })}><Copy size={15} /> Duplicar actual</button></div></div>}</div>
+}
