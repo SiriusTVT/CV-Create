@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react'
-import { MapPin, Mail, Phone, Link as LinkIcon } from 'lucide-react'
+import { MapPin, Mail, Phone, UserRound, Link as LinkIcon } from 'lucide-react'
 import { useResume } from '../resumeStore'
 import type { PersonalInfo } from '../types'
 
@@ -21,7 +21,7 @@ export function PersonalInfoEditor() {
   return <section className="editor-card">
     <div className="card-heading"><div><span className="eyebrow">01 / Identidad</span><h2>Información personal</h2></div><span className="completion">4 de 4</span></div>
     <p className="card-description">Estos datos aparecen en la cabecera de tu CV. Puedes editarlos en cualquier momento.</p>
-    <div className="photo-row"><div className="avatar-placeholder">JD</div><div><strong>Foto de perfil</strong><p>Opcional. Recomendamos una imagen profesional y luminosa.</p></div><button className="text-button">Añadir foto</button></div>
+    <div className="photo-row"><div className="avatar-placeholder" aria-label="Sin foto de perfil"><UserRound size={22} /></div><div><strong>Foto de perfil</strong><p>Opcional. Recomendamos una imagen profesional y luminosa.</p></div><button className="text-button">Añadir foto</button></div>
     <div className="form-grid">{fields.map(({ key, label, placeholder, icon: Icon }) => <label className={key === 'headline' || key === 'email' ? 'field full' : 'field'} key={key}><span>{label}</span><div className="input-wrap"><Icon size={15} /><input value={resume.personalInfo[key]} onChange={(event) => handleChange(event, key)} placeholder={placeholder} /></div></label>)}</div>
   </section>
 }

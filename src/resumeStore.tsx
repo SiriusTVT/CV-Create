@@ -1,29 +1,29 @@
 import { createContext, useContext, useEffect, useReducer, useState, type Dispatch, type ReactNode } from 'react'
 import type { Certification, Education, Experience, Language, Project, ResumeData, SectionId, Skill, TemplateId } from './types'
 
-const storageKey = 'cv-create-resume-v1'
-const documentsKey = 'cv-create-documents-v1'
+const storageKey = 'cv-create-resume-v2'
+const documentsKey = 'cv-create-documents-v2'
 
 export const initialResume: ResumeData = {
   id: crypto.randomUUID(),
-  title: 'Software Engineer CV',
+  title: 'Mi CV',
   personalInfo: {
-    firstName: 'Juan David',
-    lastName: 'Troncoso',
-    headline: 'Software Developer',
-    email: 'juan.david@example.com',
-    phone: '+57 300 000 0000',
-    city: 'Cali',
-    country: 'Colombia',
-    linkedin: 'linkedin.com/in/juandavid',
-    website: 'juandavid.dev',
+    firstName: '',
+    lastName: '',
+    headline: '',
+    email: '',
+    phone: '',
+    city: '',
+    country: '',
+    linkedin: '',
+    website: '',
   },
-  summary: 'Software Developer focused on building reliable digital products and thoughtful user experiences. Currently exploring full-stack systems and modern web architecture.',
-  experience: [{ id: 'experience-1', role: 'Software Developer', company: 'Producto digital independiente', location: 'Cali, Colombia', startDate: '2023', endDate: '', current: true, description: 'Desarrollo de aplicaciones web con foco en claridad, rendimiento y experiencias accesibles.' }],
-  education: [{ id: 'education-1', degree: 'Ingeniería de Sistemas', institution: 'Universidad del Valle', location: 'Cali, Colombia', startDate: '2019', endDate: '2024', current: false, description: '' }],
-  skills: ['Python', 'JavaScript', 'React', 'Node.js', 'SQL', 'Git', 'Docker'].map((name, index) => ({ id: `skill-${index}`, name, level: 'Avanzado' })),
-  languages: [{ id: 'language-1', name: 'Español', level: 'Nativo' }, { id: 'language-2', name: 'Inglés', level: 'B2' }],
-  projects: [{ id: 'project-1', name: 'CV AI Builder', description: 'Constructor de CVs con preview en tiempo real.', technologies: 'React · TypeScript · AI', github: 'github.com/juandavid/cv-ai-builder', demo: 'cv-ai-builder.dev', date: '2024', role: 'Full-stack developer' }],
+  summary: '',
+  experience: [],
+  education: [],
+  skills: [],
+  languages: [],
+  projects: [],
   certifications: [],
   sections: [
     { id: 'personal', label: 'Información personal', visible: true },
